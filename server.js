@@ -12,9 +12,9 @@ stdin.addListener("data", function(command) {
           let suffix= '/definitions'
           service.wordDef(word,suffix);
         }
-        if(action=="syn"){
+        else if(action=="syn"||action=="ant"){
             let suffix= '/relatedWords';
-            service.wordSyn(word,suffix);
+            service.wordSyn(word,suffix,action);
         }
       }
       else if(commandParts.length==2){

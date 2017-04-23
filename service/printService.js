@@ -6,14 +6,15 @@ var printservice ={
         console.log("*******Definition********")
         console.log(val.text);
     });
+    console.log("\n");
   },
-  printsyn:function(result){
+  printsyn:function(result,type){
     let found = false;
     result.forEach(function(val){
-        if(val.relationshipType === 'synonym'){
+        if(val.relationshipType === type){
           let words = val.words;
           let counter=1;
-          console.log(words.length+" "+"synonyms are available.")
+          console.log(words.length+" "+type+"s are available.")
           console.log("They are: ");
           words.forEach(function(word){
             console.log("\t"+(counter++)+". "+word);
@@ -22,7 +23,8 @@ var printservice ={
         }
     });
     if(!found)
-      console.log("No synonyms are availabe for this word");
+      console.log("No "+type+"s are availabe for this word");
+    console.log("\n");
   },
 }
 

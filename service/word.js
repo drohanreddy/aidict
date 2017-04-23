@@ -12,14 +12,21 @@ var serviceWrapper = {
       printservice.printdef(result);
     });
   },
-  wordSyn: function(word,suffix){
+  wordSyn: function(word,suffix,action){
       let tempUrl = url+word+suffix;
       let promise =serviceStub(tempUrl);
       promise.then(function(body) {
         let result = JSON.parse(body);
-        printservice.printsyn(result);
+        let type;
+        if(action==='syn'){
+            type= "synonym";
+        }
+        else{
+          type= "antonym";
+        }
+        printservice.printsyn(result,type);
       });
-  }
+  },
 }
 var serviceStub = function(tempUrl){
   return request({url:(tempUrl),qs:propsObj});
