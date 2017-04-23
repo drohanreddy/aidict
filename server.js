@@ -12,6 +12,10 @@ stdin.addListener("data", function(command) {
           let suffix= '/definitions'
           service.wordDef(word,suffix);
         }
+        if(action=="syn"){
+            let suffix= '/relatedWords';
+            service.wordSyn(word,suffix);
+        }
       }
       else if(commandParts.length==2){
         /**play**/
