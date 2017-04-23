@@ -1,5 +1,6 @@
 var stdin = process.openStdin();
 var service = require('./service/word.js')
+var play = require('./service/startPlay.js')
 stdin.addListener("data", function(command) {
   let input = command.toString().trim();
   if(input.includes(" ")){
@@ -27,7 +28,13 @@ stdin.addListener("data", function(command) {
       }
       else if(commandParts.length==2){
         if(commandParts[1]=="play"){
-
+          let suffix = 'randomWord';
+          let promise = service.randomWord(suffix);
+          promise.then(function(body) {
+            let result = JSON.parse(body);
+            let word= result.word;
+            play.start(word);
+          });
         }
         else{
           let suffix= '/definitions'
