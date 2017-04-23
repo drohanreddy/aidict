@@ -1,10 +1,11 @@
 var printservice ={
   printdef: function(result){
+    console.log("*******Definitions********")
+    let counter=1;
     result.forEach(function(val){
-        console.log("Definitiion gathered from: "+val.attributionText);
         console.log("\n");
-        console.log("*******Definition********")
-        console.log(val.text);
+
+        console.log("\t"+(counter++)+") "+val.text);
     });
     console.log("\n");
   },
@@ -17,7 +18,7 @@ var printservice ={
           console.log(words.length+" "+type+"s are available.")
           console.log("They are: ");
           words.forEach(function(word){
-            console.log("\t"+(counter++)+". "+word);
+            console.log("\t"+(counter++)+") "+word);
           });
           found = true;
         }
@@ -26,6 +27,15 @@ var printservice ={
       console.log("No "+type+"s are availabe for this word");
     console.log("\n");
   },
+  printex : function(result){
+    console.log(result[0].word +" example:");
+    let counter=1;
+    result.forEach(function(val){
+      console.log("\t"+(counter++)+") "+val.text);
+      console.log("\n");
+    });
+    console.log("\n");
+  }
 }
 
 module.exports = printservice;
