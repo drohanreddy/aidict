@@ -12,9 +12,11 @@
   "author": "Rohan",
   "license": "ISC",
   "dependencies": {
+    "prompt": "^1.0.0",
     "request": "^2.81.0"
   },
   "devDependencies": {
+    "eslint": "^3.19.0",
     "nodemon": "^1.11.0"
   }
 }

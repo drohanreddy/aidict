@@ -1,3 +1,4 @@
+/*jshint esversion: 6 */
 var request = require("request-promise");
 var api_key= '7dc1cea6ac0b2ec90800600ab7d047ed0b8dcd9b9df217cb3';
 var url=  'http://api.wordnik.com/v4/word.json/';
@@ -20,29 +21,28 @@ var serviceWrapper = {
 
   },
   wordSyn: function(word,suffix,action,print=true){
-      let tempUrl = url+word+suffix;
-      let promise =serviceStub(tempUrl);
-      if(print){
-        promise.then(function(body) {
-          let result = JSON.parse(body);
-          let type= "antonym";
-          if(action==='syn'){
-              type= "synonym";
-          }
-          if(action==='dict'){
-              printservice.printsyn(result,'synonym');
-              printservice.printsyn(result,'antonym');
-          }
-          else{
-            printservice.printsyn(result,type);
-          }
+    let tempUrl = url+word+suffix;
+    let promise =serviceStub(tempUrl);
+    if(print){
+      promise.then(function(body) {
+        let result = JSON.parse(body);
+        let type= "antonym";
+        if(action==='syn'){
+          type= "synonym";
+        }
+        if(action==='dict'){
+          printservice.printsyn(result,'synonym');
+          printservice.printsyn(result,'antonym');
+        }
+        else{
+          printservice.printsyn(result,type);
+        }
 
-        });
-      }
-      else{
-        return promise;
-      }
-
+      });
+    }
+    else{
+      return promise;
+    }
   },
   wordEx: function(word,suffix,print=true){
     let tempUrl = url+word+suffix;
@@ -66,8 +66,8 @@ var serviceWrapper = {
     let tempUrl = urls+suffix;
     return serviceStub(tempUrl);
   },
-}
+};
 var serviceStub = function(tempUrl){
   return request({url:(tempUrl),qs:propsObj});
-}
+};
 module.exports = serviceWrapper;
